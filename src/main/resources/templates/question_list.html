@@ -1,0 +1,37 @@
+<html layout:decorate="~{layout}">
+    <th:block layout:fragment="styles">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            th:href="@{/question_list.css}"
+        />
+    </th:block>
+    <div layout:fragment="content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Subject</th>
+                    <th>Create Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="question, iter : ${questionList}">
+                    <td th:text="${iter.index+1}"></td>
+                    <td>
+                        <a
+                            th:href="@{'/question/detail/' + ${question.id}}"
+                            th:text="${question.subject}"
+                        ></a>
+                    </td>
+                    <td
+                        th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm:ss')}"
+                    ></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="location.href='/question/create'">
+            Create Question
+        </button>
+    </div>
+</html>

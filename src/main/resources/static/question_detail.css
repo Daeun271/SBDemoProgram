@@ -1,0 +1,39 @@
+textarea {
+    width: 100%;
+    resize: none;
+    border-radius: 5px;
+}
+
+input {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9c9c9c;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100px;
+}
+
+input:hover,
+input:active,
+input:focus {
+    background-color: #7c7c7c;
+}
+
+.err-box {
+    color: black;
+    background-color: #ffcccc;
+    border-color: red;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+}

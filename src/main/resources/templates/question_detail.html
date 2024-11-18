@@ -1,0 +1,48 @@
+<html layout:decorate="~{layout}">
+    <th:block layout:fragment="styles">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            th:href="@{/question_detail.css}"
+        />
+    </th:block>
+    <div layout:fragment="content">
+        <h1 th:text="${question.subject}"></h1>
+        <p th:text="${question.content}"></p>
+        <h5
+            th:text="|Total ${#lists.size(question.answerList)} Answer(s)|"
+        ></h5>
+        <div>
+            <ul>
+                <li
+                    th:each="answer : ${question.answerList}"
+                    th:text="${answer.content}"
+                ></li>
+            </ul>
+        </div>
+        <form
+            th:action="@{|/answer/create/${question.id}|}"
+            th:object="${answerForm}"
+            method="post"
+        >
+            <div
+                th:replace="~{form_errors :: formErrorsFragment}"
+                class="err-box"
+            ></div>
+            <textarea
+                th:field="*{content}"
+                name="content"
+                id="content"
+                rows="15"
+            ></textarea>
+            <div class="btn">
+                <input type="submit" value="Submit" />
+                <input
+                    type="button"
+                    value="Return"
+                    onclick="location.href='/question/list'"
+                />
+            </div>
+        </form>
+    </div>
+</html>

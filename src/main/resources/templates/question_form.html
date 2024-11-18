@@ -1,0 +1,53 @@
+<html layout:decorate="~{layout}">
+    <th:block layout:fragment="styles">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            th:href="@{/question_form.css}"
+        />
+    </th:block>
+    <div layout:fragment="content">
+        <div class="question_box">
+            <div class="header">
+                <h2>Create Question</h2>
+            </div>
+            <form
+                th:action="@{/question/create}"
+                th:object="${questionForm}"
+                method="post"
+                class="body"
+            >
+                <div
+                    th:replace="~{form_errors :: formErrorsFragment}"
+                    class="err-box"
+                ></div>
+                <div class="label_input">
+                    <label for="subject">Subject</label>
+                    <input
+                        type="text"
+                        th:field="*{subject}"
+                        id="subject"
+                        name="subject"
+                    />
+                </div>
+                <div class="label_input">
+                    <label for="content">Content</label>
+                    <textarea
+                        th:field="*{content}"
+                        id="content"
+                        name="content"
+                    ></textarea>
+                </div>
+                <div class="btn">
+                    <button type="submit">Create</button>
+                    <button
+                        type="button"
+                        onclick="location.href='/question/list'"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>
